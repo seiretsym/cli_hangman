@@ -1,6 +1,8 @@
 // node requires
 var fs = require("fs");
 var inquirer = require("inquirer");
+var Letter = require("./letter.js");
+var Word = require("./word.js");
 
 // read from words.txt and generate an array of words to choose from
 function getWords() {
@@ -18,36 +20,18 @@ function getWords() {
 // pick a random word from the array
 function pickWord(array) {
     var index = Math.floor(Math.random() * array.length) + 1;
-    var word = array[index];
+    var randomWord = array[index];
     // build letters and push into an array
     var wordArray = [];
-    for (var i = 0; i < word.length; i++) {
-        var letter = new Letter(word[i]);
+    for (var i = 0; i < randomWord.length; i++) {
+        var letter = new Letter(randomWord[i]);
         wordArray.push(letter);
     }
-    // do something from here
-    printWord(wordArray);
+    // push the letters into a word construct
+    var word = new Word(wordArray);
+    word.printWord();
+    word.guess("a");
+    word.printWord();
 }
 
-// constructor to hide, mask letters
-function Letter(letter) {
-    this.letter = letter;
-    this.guessed = false;
-    this.printLetter = function() {
-        if (this.guessed) {
-            return this.letter;
-        } else {
-            return "_";
-        }
-    }
-}
-
-// call the printLetter function from array
-function printWord(array) {
-    var string = "";
-    array.forEach(function(letter) {
-        string += letter.printLetter() + " ";
-    })
-    console.log(string);
-}
 getWords();
