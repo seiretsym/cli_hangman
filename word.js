@@ -44,16 +44,16 @@ module.exports = function(array) {
     }
     this.win = function() {
         var word = "";
-        letters.forEach(function(letter) {
+        this.letters.forEach(function(letter) {
             word += letter.letter;
         })
-        console.log("\n\nGood job! You've corrected guessed all the letters in: " + word);
+        console.log("\nGood job! You've corrected guessed all the letters in: " + word);
     }
     this.lose = function() {
         var word = "";
-        letters.forEach(function(letter) {
+        this.letters.forEach(function(letter) {
             word += letter.letter;
         })
-        console.log("\n\nSorry. Better luck next time. The word was: " + word);
+        console.log("\nSorry. Better luck next time. The word was: " + word);
     }
 }

@@ -82,17 +82,21 @@ function playGame(word) {
             // add letter to guessedLetters
             guessedLetters += letter;
             
-            // check if all letters are guessed
-            if (correctLetters === word.letters.length) {
-                // run win function
-                winGame(word);
-            }
-            else if (correctLetters === word.correctLetters) {
-                // run correctGuess function
-                correctGuess(letter);
+            // check if letter was correct
+            if (correctLetters < word.correctLetters) {
+                // update correctLetters count
+                correctLetters = word.correctLetters;
+                // if all letters are guessed
+                if (correctLetters === word.letters.length) {
+                    // winner!
+                    winGame(word);
+                } else {
+                    // let em know it was right
+                    correctGuess(letter, word);
+                }
             } else {
-                // run wrongGuess function
-                wrongGuess(letter);
+                // let em know it was wrong
+                wrongGuess(letter, word);
             }
         })
     } else {
@@ -102,19 +106,19 @@ function playGame(word) {
 }
 
 // letting you know you're doing something right
-function correctGuess(letter) {
+function correctGuess(letter, word) {
     console.log("\n" + letter + " was found in the word!")
     // guess again by looping playGame()
-    playGame();
+    playGame(word);
 }
 
 // letting you know you're doing something wrong
-function wrongGuess(letter) {
+function wrongGuess(letter, word) {
     console.log("\n" + letter + " was not found in the word!")
     // deduct remaining guesses
     remainingGuesses--;
     // guess again by looping playGame()
-    playGame();
+    playGame(word);
 }
 
 // you won!
@@ -133,4 +137,36 @@ function loseGame(word) {
     playAgain();
 }
 
+// prompt user to play again
+function playAgain() {
+    // spacer
+    console.log("\n");
+
+    // prompt user for confirmation
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Would you like to play again?",
+            name: "confirm",
+            default: true
+        }
+    ]).then(function(response) {
+        // yes
+        if (response.confirm) {
+            // re-initialize the game
+            remainingGuesses = 10;
+            guessedLetters = "";
+            correctLetters = 0;
+            // and start it again
+            getWords();
+        }
+        // no
+        else {
+            console.log("\nThanks for playing!");
+            return;
+        }
+    })
+}
+
+// initialize the game
 getWords();
