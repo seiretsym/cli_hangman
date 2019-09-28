@@ -1,3 +1,6 @@
+House on Haunted Hill
+Four Horsemen's Horses
+Jack-o-lantern
 apples
 autumn
 bats
@@ -29,7 +32,6 @@ haunted house
 hayride
 hoot
 howl
-Jack-o-lantern
 mask
 monster
 moonlight

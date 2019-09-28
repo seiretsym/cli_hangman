@@ -24,7 +24,7 @@ function getWords() {
 
 // pick a random word from the array
 function pickWord(array) {
-    var index = Math.floor(Math.random() * array.length) + 1;
+    var index = Math.floor(Math.random() * array.length);
     var randomWord = array[index];
     // build letters and push into an array
     var wordArray = [];
@@ -34,6 +34,7 @@ function pickWord(array) {
     }
     // push the letters into a word construct
     var word = new Word(wordArray);
+    word.setSpaceToTrue();
     playGame(word);
 }
 

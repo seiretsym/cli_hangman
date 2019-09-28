@@ -8,9 +8,6 @@ module.exports = function(array) {
             if (i === this.letters.length - 1) {
                 // don't add a space if it's the last character
                 string += this.letters[i].printLetter();
-            } else if (this.letters[i].letter === " ") {
-                // account for spaces
-                string += " ";
             } else {
                 string += this.letters[i].printLetter() + " ";
             }
@@ -34,9 +31,9 @@ module.exports = function(array) {
         this.correctLetters = count;
     }
     this.setSpaceToTrue = function() {
-        // check the entire letter array for spaces
+        // check the entire letter array for spaces, hyphens, and apostrophes
         this.letters.forEach(function(letter) {
-            if (letter.letter === " ") {
+            if (letter.letter === " " || letter.letter === "-" || letter.letter === "'") {
                 // set it to true if it is
                 letter.guessed = true;
             }
