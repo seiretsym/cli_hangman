@@ -12,7 +12,7 @@ module.exports = function(letter) {
     }
     this.guessLetter = function(letter) {
         // compare guess to this.letter
-        if (letter === this.letter) {
+        if (letter.toLowerCase() === this.letter.toLowerCase()) {
             // set guessed to true if it is
             this.guessed = true;
         }
