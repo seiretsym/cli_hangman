@@ -1,6 +1,7 @@
 // word constructor for letter constructors to make things easier
 module.exports = function(array) {
     this.letters = array;
+    this.correctLetters = 0;
     this.printWord = function() {
         var string = "";
         for (var i = 0; i < this.letters.length; i++) {
@@ -18,5 +19,15 @@ module.exports = function(array) {
         this.letters.forEach(function(letter) {
             letter.guessLetter(guess);
         })
+        this.countCorrectLetters();
+    }
+    this.countCorrectLetters = function() {
+        var count = 0;
+        this.letters.forEach(function(letter) {
+            if (letter.guessed) {
+                count++
+            }
+        })
+        this.correctLetters = count;
     }
 }
