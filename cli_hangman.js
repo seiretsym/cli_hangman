@@ -16,6 +16,7 @@ function getWords() {
             console.log(error);
         } else {
             var wordArray = data.split("\n");
+            console.log(wordArray)
             // do something after creating wordArray
             pickWord(wordArray);
         }
