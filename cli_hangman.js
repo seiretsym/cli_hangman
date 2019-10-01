@@ -11,11 +11,11 @@ var remainingGuesses = 10;
 
 // read from words.txt and generate an array of words to choose from
 function getWords() {
-    fs.readFile("./words.txt", "utf8", function(error, data) {
+    fs.readFile("./words.txt", "utf-8", function(error, data) {
         if (error) {
             console.log(error);
         } else {
-            var wordArray = data.split("\r\n");
+            var wordArray = data.split(",");
             // do something after creating wordArray
             pickWord(wordArray);
         }
